@@ -9,34 +9,18 @@ namespace Application
 
         public Graph()
         {
-            var node1 = new Node();
-            var node2 = new Node();
-            var node3 = new Node();
-            var node4 = new Node();
-            var node5 = new Node();
+            var node1 = new Node(1);
+            var node2 = new Node(2);
+            var node3 = new Node(3);
+            var node4 = new Node(4);
+            var node5 = new Node(5);
 
-            var edge1 = new Edge();
-            var edge2 = new Edge();
-            var edge3 = new Edge();
-            var edge4 = new Edge();
+            new Edge(node1, node2);
+            new Edge(node2, node3);
+            new Edge(node2, node4);
+            new Edge(node4, node5);
 
-            edge1.Node1 = node1;
-            edge1.Node2 = node2;
-            edge2.Node1 = node2;
-            edge2.Node2 = node3;
-            edge3.Node1 = node2;
-            edge3.Node2 = node4;
-            edge4.Node1 = node4;
-            edge4.Node2 = node5;
-
-            node1.Edges.Add(edge1);
-            node2.Edges.Add(edge1);
-            node2.Edges.Add(edge2);
-            node2.Edges.Add(edge3);
-            node3.Edges.Add(edge2);
-            node4.Edges.Add(edge3);
-            node4.Edges.Add(edge4);
-            node5.Edges.Add(edge4);
+            Root = node1;
         }
 
         public Node Root { get; set; } = null!;
@@ -51,12 +35,27 @@ namespace Application
 
     public class Edge
     {
+        public Edge(Node node1, Node node2)
+        {
+            Node1 = node1;
+            Node2 = node2;
+
+            Node1.Edges.Add(this);
+            Node2.Edges.Add(this);
+        }
+
         public Node Node1 { get; set; } = null!;
         public Node Node2 { get; set; } = null!;
     }
 
     public class Node
     {
+        public Node(int id)
+        {
+            Id = id;
+        }
+
+        public int Id { get; set; }
         public List<Edge> Edges { get; set;} = [];
     }
 }

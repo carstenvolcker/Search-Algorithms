@@ -2,4 +2,5 @@
 using Application;
 
 Console.WriteLine("Hello, World!");
-var a = new Edge();
+var graph = new Graph();
+graph.Traverse();
