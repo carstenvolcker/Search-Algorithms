@@ -2,4 +2,4 @@
 using Application;
 
 Console.WriteLine("Hello, World!");
-var a = new Class1();
+var a = new Edge();
