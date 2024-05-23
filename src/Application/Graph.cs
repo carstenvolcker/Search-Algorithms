@@ -1,42 +1,61 @@
-﻿using System.ComponentModel.Design.Serialization;
-using System.Security.Cryptography.X509Certificates;
+﻿//using System.ComponentModel.Design.Serialization;
+//using System.Security.Cryptography.X509Certificates;
 
 namespace Application
 {
     public class Graph
     {
-        
+        // Fields
+        public Guid Guid { get; }
+        public List<Node> Nodes { get; set; }
 
-        public Graph()
+        // Constructors
+        public Graph(List<Node> nodes)
         {
-            var node1 = new Node(1);
-            var node2 = new Node(2);
-            var node3 = new Node(3);
-            var node4 = new Node(4);
-            var node5 = new Node(5);
-
-            new Edge(node1, node2);
-            new Edge(node2, node3);
-            new Edge(node2, node4);
-            new Edge(node4, node5);
-
-            Root = node1;
+            Guid = Guid.NewGuid();
+            Nodes = nodes;
         }
 
-        public Node Root { get; set; } = null!;
+        // Functions
+        /*
+        public void DFS(Node start)
+        {
+            Stack<Node> stack = [];
+            stack.Push(start);
+            while (stack.Count > 0)
+            {
+                Node node = stack.Pop();
+                Console.WriteLine("Visited node: " + node.Id.ToString());
+                foreach (Edge edge in node.Edges)
+                {
+                    stack.Push(edge.Node2);
+                }
+            }
+        }
+        */
 
+        /*
         public void Traverse()
         {
             var edge1 = Root.Edges.First();
             var node2 = edge1.Node2;
             var edge2 = node2.Edges.First();
         }
+        */
     }
 
     public class Edge
     {
+        // Fields
+        public Guid Guid { get; }
+        public Node Node1 { get; set; } = null!;
+        public Node Node2 { get; set; } = null!;
+
+        // Constructors
         public Edge(Node node1, Node node2)
         {
+            Guid = Guid.NewGuid();
+
             Node1 = node1;
             Node2 = node2;
 
@@ -44,18 +63,23 @@ namespace Application
             Node2.Edges.Add(this);
         }
 
-        public Node Node1 { get; set; } = null!;
-        public Node Node2 { get; set; } = null!;
+        // Functions
     }
 
     public class Node
     {
+        // Fields
+        public Guid Guid { get; }
+        public int Id { get; set; }
+        public List<Edge> Edges { get; set; } = [];
+
+        // Constructors
         public Node(int id)
         {
+            Guid = Guid.NewGuid();
             Id = id;
         }
 
-        public int Id { get; set; }
-        public List<Edge> Edges { get; set;} = [];
+        // Functions
     }
 }
