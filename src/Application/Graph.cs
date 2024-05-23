@@ -37,6 +37,26 @@ namespace Application
             }
         }
 
+        public void BFS(Node start)
+        {
+            Queue<Node> stack = [];
+            stack.Enqueue(start);
+            HashSet<Node> visited = [];
+            while (stack.Count > 0)
+            {
+                Node node = stack.Dequeue();
+                visited.Add(node);
+                Console.WriteLine("Visited node: " + node.Id.ToString());
+                foreach (Edge edge in node.Edges)
+                {
+                    if (!visited.Contains(edge.Node2))
+                    {
+                        stack.Enqueue(edge.Node2);
+                    }
+                }
+            }
+        }
+
         /*
         public void Traverse()
         {

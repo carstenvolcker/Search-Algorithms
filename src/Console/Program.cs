@@ -21,4 +21,8 @@ new Edge(nodeG, nodeF);
 
 Graph graph = new Graph(new List<Node> { nodeA, nodeA, nodeC, nodeD, nodeE, nodeF, nodeG });
 
+Console.WriteLine("Calling DFS:");
 graph.DFS(nodeA);
+
+Console.WriteLine("Calling BFS:");
+graph.BFS(nodeA);
