@@ -17,22 +17,25 @@ namespace Application
         }
 
         // Functions
-        /*
         public void DFS(Node start)
         {
             Stack<Node> stack = [];
             stack.Push(start);
+            HashSet<Node> visited = [];
             while (stack.Count > 0)
             {
                 Node node = stack.Pop();
+                visited.Add(node);
                 Console.WriteLine("Visited node: " + node.Id.ToString());
                 foreach (Edge edge in node.Edges)
                 {
-                    stack.Push(edge.Node2);
+                    if (!visited.Contains(edge.Node2))
+                    {
+                        stack.Push(edge.Node2);
+                    }
                 }
             }
         }
-        */
 
         /*
         public void Traverse()
@@ -70,11 +73,11 @@ namespace Application
     {
         // Fields
         public Guid Guid { get; }
-        public int Id { get; set; }
+        public string Id { get; set; }
         public List<Edge> Edges { get; set; } = [];
 
         // Constructors
-        public Node(int id)
+        public Node(string id)
         {
             Guid = Guid.NewGuid();
             Id = id;

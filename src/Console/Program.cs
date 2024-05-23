@@ -1,19 +1,24 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Application;
+using System.Xml.Linq;
 
 Console.WriteLine("Hello, World!");
 
-var node1 = new Node(1);
-var node2 = new Node(2);
-var node3 = new Node(3);
-var node4 = new Node(4);
-var node5 = new Node(5);
+var nodeA = new Node("A");
+var nodeB = new Node("B");
+var nodeC = new Node("C");
+var nodeD = new Node("D");
+var nodeE = new Node("E");
+var nodeF = new Node("F");
+var nodeG = new Node("G");
 
-new Edge(node1, node2);
-new Edge(node2, node3);
-new Edge(node2, node4);
-new Edge(node4, node5);
+new Edge(nodeA, nodeB);
+new Edge(nodeA, nodeD);
+new Edge(nodeD, nodeE);
+new Edge(nodeD, nodeG);
+new Edge(nodeE, nodeC);
+new Edge(nodeG, nodeF);
 
-Graph graph = new Graph(new List<Node> { node1, node2, node3, node4, node5 });
+Graph graph = new Graph(new List<Node> { nodeA, nodeA, nodeC, nodeD, nodeE, nodeF, nodeG });
 
-//graph.DFS(node1);
+graph.DFS(nodeA);
