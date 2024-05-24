@@ -12,14 +12,14 @@ var nodeE = new Node("E");
 var nodeF = new Node("F");
 var nodeG = new Node("G");
 
-new Edge(nodeA, nodeB);
-new Edge(nodeA, nodeD);
-new Edge(nodeD, nodeE);
-new Edge(nodeD, nodeG);
-new Edge(nodeE, nodeC);
-new Edge(nodeG, nodeF);
+new Edge("AB", nodeA, nodeB, "--");
+new Edge("AD", nodeA, nodeD, "--");
+new Edge("DE", nodeD, nodeE, "--");
+new Edge("DG", nodeD, nodeG, "--");
+new Edge("EC", nodeE, nodeC, "--");
+new Edge("GF", nodeG, nodeF, "--");
 
-Graph graph = new Graph(new List<Node> { nodeA, nodeA, nodeC, nodeD, nodeE, nodeF, nodeG });
+Graph graph = new Graph("Test", new List<Node> {nodeA, nodeA, nodeC, nodeD, nodeE, nodeF, nodeG});
 
 Console.WriteLine("Calling DFS:");
 graph.DFS(nodeA);
