@@ -1,14 +1,12 @@
-﻿//using System.ComponentModel.Design.Serialization;
-//using System.Security.Cryptography.X509Certificates;
-
-namespace Application
+﻿namespace Application
 {
     public class Graph
     {
         // Public variables
         public Guid Guid { get; }
         public string Name { get; private set; }
-        public List<Node> Nodes { get; set; }
+        public List<Edge> Edges { get; set; } = [];
+        public List<Node> Nodes { get; set; } = [];
 
         // Constructors
         public Graph(string name, List<Node> nodes)
@@ -18,7 +16,29 @@ namespace Application
             Nodes = nodes;
         }
 
+        public Graph(string name)
+        {
+            Guid = Guid.NewGuid();
+            Name = name;
+        }
+
         // Public functions
+        public void AddEdge(string name, string leftNodeName, string rightNodeName, string direction)
+        {
+            Edge edge = new Edge(name, leftNodeName, rightNodeName, direction);
+            if (!Edges.Contains(edge))
+            {
+                Edges.Add(edge);
+            }
+            foreach (Node node in edge.Nodes)
+            {
+                if (!Nodes.Contains(node))
+                {
+                    Nodes.Add(node);
+                }
+            }
+        }
+
         public void ModifyName(string name)
         {
             Name = name;
@@ -87,6 +107,14 @@ namespace Application
             DirectionSetup(direction);
         }
 
+        public Edge(string name, string leftNodeName, string rightNodeName, string direction)
+        {
+            Guid = Guid.NewGuid();
+            Name = name;
+            Nodes = [new Node(leftNodeName), new Node(rightNodeName)];
+            DirectionSetup(direction);
+        }
+
         // Public functions
         public void ModifyName(string name)
         {
@@ -141,7 +169,7 @@ namespace Application
         // Constructors
         public Node(string name)
         {
-            Guid = Guid.NewGuid();
+            //Guid = Guid.NewGuid();
             Name = name;
         }
 
